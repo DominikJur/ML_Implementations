@@ -2,7 +2,7 @@ from collections import Counter
 
 import numpy as np
 
-from base import IEstimator
+from algos.base import IEstimator
 
 
 class KNN(IEstimator):
