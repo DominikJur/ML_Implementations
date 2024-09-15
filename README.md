@@ -26,6 +26,8 @@ Here is a list of machine learning algorithms currently implemented in this repo
 ### Supervised Learning
 - **Linear Regression**: Ordinary Least Squares (OLS), Gradient Descent
 - **K-Nearest Neighbors (KNN)**: Classification algorithm based on proximity
+- **Decision Tree**: Classification trees
+- **Random Forest**: An ensemble method based on decision tree classifiers taking advantage of bootstraping
 
 ## Installation
 
@@ -35,8 +37,12 @@ Here is a list of machine learning algorithms currently implemented in this repo
   - `numpy`
   - `matplotlib` (for visualizations)
   - `scipy` (for certain numerical methods)
-
+  - `seaborn` (cause its pretty)
+  - `scikit-learn` (datasets)
+    
 You can install the required libraries using pip:
 
 ```bash
 pip install numpy matplotlib scipy
+```
+Happy coding :)
