@@ -8,7 +8,7 @@ from algos.base import IEstimator
 class KNN(IEstimator):
     def __init__(self, k_neighbors=3):
         self.k_neighbors = k_neighbors
-    
+
     def validate(self, X, y=None):
         if not isinstance(X, np.ndarray):
             X = np.array(X)
@@ -24,7 +24,7 @@ class KNN(IEstimator):
             if len(y) == 0:
                 raise ValueError("Empty array y")
         return X, y
-    
+
     def fit(self, X, y):
         X, y = self.validate(X, y)
         self.X = X
@@ -32,16 +32,15 @@ class KNN(IEstimator):
 
     def _euclidian_metric(self, x1, x2):
         assert len(x1) == len(x2)
-        return np.sqrt(np.sum((x1-x2)**2))
+        return np.sqrt(np.sum((x1 - x2) ** 2))
 
     def _predict(self, x):
-        distances = [self._euclidian_metric(x,x_) for x_ in self.X]
+        distances = [self._euclidian_metric(x, x_) for x_ in self.X]
 
-        k_nearest_ids = np.argsort(distances)[:self.k_neighbors]
-        k_nearest_labels = [self.y[id][0] for id in k_nearest_ids]
+        k_nearest_ids = np.argsort(distances)[: self.k_neighbors]
+        k_nearest_labels = np.array([self.y[id] for id in k_nearest_ids]).flatten()
 
-        return Counter(k_nearest_labels).most_common()[0][0]
-
+        return Counter(k_nearest_labels).most_common(1)[0][0]
 
     def predict(self, X):
         X, _ = self.validate(X)
