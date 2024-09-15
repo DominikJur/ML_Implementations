@@ -6,11 +6,6 @@ Welcome to the **Homemade Machine Learning Algorithms** repository! This reposit
 
 - [About the Project](#about-the-project)
 - [Implemented Algorithms](#implemented-algorithms)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Examples](#examples)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## About the Project
 
@@ -30,20 +25,7 @@ Here is a list of machine learning algorithms currently implemented in this repo
 
 ### Supervised Learning
 - **Linear Regression**: Ordinary Least Squares (OLS), Gradient Descent
-- **Logistic Regression**: Binary classification with cross-entropy loss
 - **K-Nearest Neighbors (KNN)**: Classification algorithm based on proximity
-- **Naive Bayes**: Gaussian Naive Bayes classifier
-- **Decision Tree**: Classification and regression trees (CART)
-- **Support Vector Machine (SVM)**: Hard-margin SVM implemented with quadratic optimization
-
-### Unsupervised Learning
-- **K-Means Clustering**: Lloyd’s algorithm for clustering data points
-- **Principal Component Analysis (PCA)**: Dimensionality reduction technique
-- **Hierarchical Clustering**: Agglomerative clustering algorithm
-
-### Optimization Algorithms
-- **Gradient Descent**: Batch, Stochastic, and Mini-batch Gradient Descent
-- **Newton's Method**: For optimization in machine learning models
 
 ## Installation
 
