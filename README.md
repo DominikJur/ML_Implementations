@@ -43,6 +43,6 @@ Here is a list of machine learning algorithms currently implemented in this repo
 You can install the required libraries using pip:
 
 ```bash
-pip install numpy matplotlib scipy
+pip install numpy matplotlib scipy seaborn scikit-learn 
 ```
 Happy coding :)
