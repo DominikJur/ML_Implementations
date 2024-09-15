@@ -24,7 +24,7 @@ These implementations do not aim to be highly optimized or production-ready; rat
 Here is a list of machine learning algorithms currently implemented in this repository:
 
 ### Supervised Learning
-- **Linear Regression**: Ordinary Least Squares (OLS), Gradient Descent
+- **Linear Regression**: Gradient Descent
 - **K-Nearest Neighbors (KNN)**: Classification algorithm based on proximity
 - **Decision Tree**: Classification trees
 - **Random Forest**: An ensemble method based on decision tree classifiers taking advantage of bootstraping
