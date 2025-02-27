@@ -20,22 +20,21 @@ class Node:
 
 
 class DecisionTreeClassifier(IEstimator):
-    def __init__(
-        self, max_depth=100, min_samples_split=2, n_featues=None
-    ):
+    def __init__(self, max_depth=100, min_samples_split=2, n_featues=None):
         self.min_samples_split = min_samples_split
         self.max_depth = max_depth
         self.n_features = n_featues
         self.root = None
 
     def fit(self, X, y):
-        self.n_features = X.shape[1] if not self.n_features else min(X.shape[1], self.n_features)
+        self.n_features = (
+            X.shape[1] if not self.n_features else min(X.shape[1], self.n_features)
+        )
         self.root = self._grow_tree(X, y)
-        
+
         return self
 
     def _grow_tree(self, X, y, depth=0):
-        assert len(y) > 0
 
         n_samples, n_features = X.shape
         n_labels = len(np.unique(y))
@@ -45,7 +44,6 @@ class DecisionTreeClassifier(IEstimator):
             or n_labels == 1
             or n_samples < self.min_samples_split
         ):
-
 
             leaf_value = self._most_common_label(y)
             return Node(value=leaf_value)
@@ -64,7 +62,7 @@ class DecisionTreeClassifier(IEstimator):
     def _best_split(self, X, y, feature_indices):
         best_gain = -1
         split_index, split_threshold = None, None
-        
+
         for feature_index in feature_indices:
             X_column = X[:, feature_index]
             thresholds = np.unique(X_column)
@@ -108,9 +106,9 @@ class DecisionTreeClassifier(IEstimator):
     def _most_common_label(self, y):
         assert len(y) > 0
         counter = Counter(y)
-    
+
         return counter.most_common(1)[0][0]
-    
+
     def predict(self, X):
         return np.array([self._traverse_tree(x, self.root) for x in X])
 
