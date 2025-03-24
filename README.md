@@ -18,6 +18,7 @@ These implementations do not aim to be highly optimized or production-ready; rat
 - Calculus and Gradient-Based Optimization
 - Probability Theory and Statistics
 - Numerical Methods
+- Neural Networks
 
 ## Implemented Algorithms
 
