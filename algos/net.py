@@ -37,7 +37,7 @@ def cross_entropy_loss(y_true, y_pred):
 def cross_entropy_loss_derivative(y_true, y_pred):
     return y_pred - y_true
 
-class Layer:
+class FullyConnected:
 
     def __init__(self, input_size, output_size):
         self.input_size = input_size
@@ -117,28 +117,29 @@ class NeuralNet:
             result.append(prediction)
         return np.array(result)
 
-    def fit(self, X, y, minibatches=None, eta=0.1, batch_size=64):
+    def fit(self, X, y, epochs=1, minibatches=None, eta=0.1, batch_size=64):
 
         if minibatches == None:
             minibatches = len(X) // 64 
-        for i in range(minibatches):
-            mean_error = 0
-            idx = np.random.choice(X.shape[0], batch_size, replace=False)
-            X_batch = X[idx]
-            y_batch = y[idx]
-            for j in range(batch_size):
-                prediction = X_batch[j]
+        for epoch in range(epochs):
+            for i in range(minibatches):
+                mean_error = 0
+                idx = np.random.choice(X.shape[0], batch_size, replace=False)
+                X_batch = X[idx]
+                y_batch = y[idx]
+                for j in range(batch_size):
+                    prediction = X_batch[j]
+                    for layer in self.layers:
+                        prediction = layer.forward(prediction)
+                        
+                    mean_error += cross_entropy_loss(y_batch[j], prediction)
+
+                    dE_dy = cross_entropy_loss_derivative(y_batch[j], prediction)
+                    for layer in reversed(self.layers):
+                        dE_dy = layer.backward(dE_dy)
+
                 for layer in self.layers:
-                    prediction = layer.forward(prediction)
-                    
-                mean_error += cross_entropy_loss(y_batch[j], prediction)
-
-                error = cross_entropy_loss_derivative(y_batch[j], prediction)
-                for layer in reversed(self.layers):
-                    error = layer.backward(error)
-
-            for layer in self.layers:
-                layer.step(eta)
-            if self.verbose and i % 100 == 0:
-                mean_error = mean_error / batch_size
-                print(f"Minibatch: {i}/{minibatches},\nError: {mean_error}.\n")
+                    layer.step(eta)
+                if self.verbose and i % 10 == 0:
+                    mean_error = mean_error / batch_size
+                    print(f"Epoch: {epoch+1}/{epochs}, Minibatch: {i}/{minibatches},\nError: {mean_error}.\n")
